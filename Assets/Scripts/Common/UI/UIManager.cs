@@ -92,7 +92,8 @@ public class UIManager : SingletonBehaviour<UIManager> // 싱글톤 패턴을 상속받는
     public BaseUI GetActiveUI<T>() // 제네릭 타입으로 활성 UI를 가져오는 메서드
     {
         var uiType = typeof(T); // 제네릭 타입을 System.Type으로 변환
-        return m_OpenUIPool.ContainsKey(uiType) ? m_OpenUIPool[uiType].GetComponent<BaseUI>() : null; // 열린 UI 풀에 있으면 UI 컴포넌트 반환, 없으면 null 반환
+        return m_OpenUIPool.ContainsKey(uiType) ? m_OpenUIPool[uiType].GetComponent<BaseUI>() : null; 
+        // 열린 UI 풀에 있으면 UI 컴포넌트 반환, 없으면 null 반환
     }
 
     public bool ExistsOpenUI() // 열린 UI가 존재하는지 확인하는 메서드

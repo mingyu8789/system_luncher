@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 156404376913876661}
-  - component: {fileID: 6413260049261604992}
+  - component: {fileID: 5807996943901833898}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -69,7 +69,7 @@ Transform:
   - {fileID: 6224766973475428659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6413260049261604992
+--- !u!114 &5807996943901833898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2654125874697113539}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a286fd6757549924e91c71eec45ca575, type: 3}
+  m_Script: {fileID: 11500000, guid: 2763835abfe0be04e9beee0d54f72862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UICanvasTrs: {fileID: 6224766973475428659}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7022521556416750748}
   - component: {fileID: 7022521556416750747}
-  - component: {fileID: 7122994090759401358}
+  - component: {fileID: 5373227254920211582}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -272,13 +272,13 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &7122994090759401358
+--- !u!114 &5373227254920211582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

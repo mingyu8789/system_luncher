@@ -1,15 +1,16 @@
-ï»¿using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
-    //ë¡œê³ 
+    //·Î°í
     public Animation LogoAnim;
     public TextMeshProUGUI LogoTxt;
 
-    //íƒ€ì´í‹€
+    //Å¸ÀÌÆ²
     public GameObject Title;
     public Slider LoadingSlider;
     public TextMeshProUGUI LoadingProgressTxt;
@@ -25,27 +26,27 @@ public class TitleManager : MonoBehaviour
 
     private void Start()
     {
-        //ìœ ì € ë°ì´í„° ë¡œë“œ
+        //À¯Àú µ¥ÀÌÅÍ ·Îµå
         UserDataManager.Instance.LoadUserData();
 
-        //ì €ì¥ëœ ìœ ì € ë°ì´í„°ê°€ ì—†ìœ¼ë©´ ê¸°ë³¸ê°’ìœ¼ë¡œ ì„¸íŒ… í›„ ì €ì¥
+        //ÀúÀåµÈ À¯Àú µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é ±âº»°ªÀ¸·Î ¼¼ÆÃ ÈÄ ÀúÀå
         if (!UserDataManager.Instance.ExistsSavedData)
         {
-            UserDataManager.Instance.SetDefaultUserData(); // ê¸°ë³¸ ë°ì´í„° ì„¤ì •
-            UserDataManager.Instance.SaveUserData(); // ê¸°ë³¸ ë°ì´í„° ì €ì¥
+            UserDataManager.Instance.SetDefaultUserData(); // ±âº» µ¥ÀÌÅÍ ¼³Á¤
+            UserDataManager.Instance.SaveUserData(); // ±âº» µ¥ÀÌÅÍ ÀúÀå
         }
 
         //var confirmUIData = new ConfirmUIData();
         //confirmUIData.ConfirmType = ConfirmType.OK_CANCEL;
         //confirmUIData.TitleTxt = "UI Test";
-        //confirmUIData.DescTxt = "This is UI Text";
-        //confirmUIData.OKBtnTxt = "OK";
-        //confirmUIData.CancelBtnTxt = "Cancel";
+        //confirmUIData.DescTxt = "This is UI Text.";
+        //confirmUIData.OKBtnTxt = "È®ÀÎ";
+        //confirmUIData.CancelBtnTxt = "Ãë¼Ò";
         //UIManager.Instance.OpenUI<ConfirmUI>(confirmUIData);
 
+        AudioManager.Instance.OnLoadUserData();
 
-
-        StartCoroutine(LoadGameCo()); //ê²Œì„ ë¡œë”© ì½”ë£¨í‹´ ì‹œì‘
+        StartCoroutine(LoadGameCo());
     }
 
     private IEnumerator LoadGameCo()
@@ -53,7 +54,7 @@ public class TitleManager : MonoBehaviour
         Logger.Log($"{GetType()}::LoadGameCo");
 
 
-
+        
 
 
 
@@ -74,20 +75,20 @@ public class TitleManager : MonoBehaviour
         m_AsyncOperation.allowSceneActivation = false;
 
         /*
-        * ë¡œë”© ì‹œê°„ì´ ì§§ì€ ê²½ìš° ë¡œë”© ìŠ¬ë¼ì´ë” ë³€í™”ê°€ ë„ˆë¬´ ë¹¨ë¼ ë³´ì´ì§€ ì•Šì„ ìˆ˜ ìˆë‹¤.
-        * ì¼ë¶€ëŸ¬ ëª‡ ì´ˆ ê°„ 50%ë¡œ ë³´ì—¬ì¤Œìœ¼ë¡œì¨ ì‹œê°ì ìœ¼ë¡œ ë” ìì—°ìŠ¤ëŸ½ê²Œ ì²˜ë¦¬í•œë‹¤.
+        * ·Îµù ½Ã°£ÀÌ ÂªÀº °æ¿ì ·Îµù ½½¶óÀÌ´õ º¯È­°¡ ³Ê¹« »¡¶ó º¸ÀÌÁö ¾ÊÀ» ¼ö ÀÖ´Ù.
+        * ÀÏºÎ·¯ ¸î ÃÊ °£ 50%·Î º¸¿©ÁÜÀ¸·Î½á ½Ã°¢ÀûÀ¸·Î ´õ ÀÚ¿¬½º·´°Ô Ã³¸®ÇÑ´Ù.
         */
         LoadingSlider.value = 0.5f;
         LoadingProgressTxt.text = $"{(int)(LoadingSlider.value * 100)}%";
         yield return new WaitForSeconds(0.5f);
 
-        while (!m_AsyncOperation.isDone) //ë¡œë”©ì´ ì§„í–‰ ì¤‘ì¼ ë•Œ 
+        while (!m_AsyncOperation.isDone) //·ÎµùÀÌ ÁøÇà ÁßÀÏ ¶§ 
         {
-            //ë¡œë”© ìŠ¬ë¼ì´ë” ì—…ë°ì´íŠ¸
+            //·Îµù ½½¶óÀÌ´õ ¾÷µ¥ÀÌÆ®
             LoadingSlider.value = m_AsyncOperation.progress < 0.5f ? 0.5f : m_AsyncOperation.progress;
             LoadingProgressTxt.text = $"{(int)(LoadingSlider.value * 100)}%";
 
-            //ì”¬ ë¡œë”©ì´ ì™„ë£Œë˜ì—ˆë‹¤ë©´ ë¡œë¹„ë¡œ ì „í™˜í•˜ê³  ì½”ë£¨í‹´ ì¢…ë£Œ
+            //¾À ·ÎµùÀÌ ¿Ï·áµÇ¾ú´Ù¸é ·Îºñ·Î ÀüÈ¯ÇÏ°í ÄÚ·çÆ¾ Á¾·á
             if (m_AsyncOperation.progress >= 0.9f)
             {
                 m_AsyncOperation.allowSceneActivation = true;

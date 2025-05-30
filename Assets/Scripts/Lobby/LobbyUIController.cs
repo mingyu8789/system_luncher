@@ -6,4 +6,13 @@ public class LobbyUIController : MonoBehaviour
     {
 
     }
+
+    public void OnClickSettingsBtn()
+    {
+        Logger.Log($"{GetType()}::OnClickSettingsBtn");
+
+        var uiData = new BaseUIData();
+        UIManager.Instance.OpenUI<SettingsUI>(uiData);
+    }
+
 }

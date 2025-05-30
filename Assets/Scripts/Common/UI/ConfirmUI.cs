@@ -19,7 +19,10 @@ public class ConfirmUIData : BaseUIData // BaseUIData를 상속받는 확인창 UI 데이�
     public Action OnClickCancelBtn; // 취소 버튼 클릭 시 실행할 액션
 }
 
-public class ConfirmUI : BaseUI
+
+
+
+public class ConfirmUI : BaseUI // BaseUI를 상속받는 확인창 UI 클래스
 {
     public TextMeshProUGUI TitleTxt = null; // 제목 텍스트 UI 컴포넌트
     public TextMeshProUGUI DescTxt = null; // 설명 텍스트 UI 컴포넌트
@@ -47,7 +50,8 @@ public class ConfirmUI : BaseUI
         m_OnClickCancelBtn = m_ConfirmUIData.OnClickCancelBtn; // 취소 버튼 클릭 액션 설정
 
         OKBtn.gameObject.SetActive(true); // 확인 버튼 활성화
-        CancelBtn.gameObject.SetActive(m_ConfirmUIData.ConfirmType == ConfirmType.OK_CANCEL); // 확인창 타입이 OK_CANCEL인 경우에만 취소 버튼 활성화
+        // 확인창 타입이 OK_CANCEL인 경우에만 취소 버튼 활성화
+        CancelBtn.gameObject.SetActive(m_ConfirmUIData.ConfirmType == ConfirmType.OK_CANCEL); 
     }
 
     public void OnClickOKBtn() // 확인 버튼 클릭 시 호출되는 메서드
@@ -61,4 +65,5 @@ public class ConfirmUI : BaseUI
         m_OnClickCancelBtn?.Invoke(); // 취소 버튼 클릭 액션 실행
         CloseUI(); // UI 닫기
     }
+
 }

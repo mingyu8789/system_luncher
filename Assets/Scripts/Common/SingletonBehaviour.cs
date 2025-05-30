@@ -1,35 +1,35 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-// Á¦³×¸¯ ½Ì±ÛÅæ ÆĞÅÏÀ» ±¸ÇöÇÑ º£ÀÌ½º Å¬·¡½º
+// ì œë„¤ë¦­ ì‹±ê¸€í†¤ íŒ¨í„´ì„ êµ¬í˜„í•œ ë² ì´ìŠ¤ í´ë˜ìŠ¤
 public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<T>
 {
-    // ¾À ÀüÈ¯ ½Ã »èÁ¦ÇÒÁö ¿©ºÎ
+    // ì”¬ ì „í™˜ ì‹œ ì‚­ì œí• ì§€ ì—¬ë¶€
     protected bool m_IsDestroyOnLoad = false;
 
-    // ÀÌ Å¬·¡½ºÀÇ ½ºÅÂÆ½ ÀÎ½ºÅÏ½º º¯¼ö
+    // ì´ í´ë˜ìŠ¤ì˜ ìŠ¤íƒœí‹± ì¸ìŠ¤í„´ìŠ¤ ë³€ìˆ˜
     protected static T m_Instance;
 
-    // ÀÎ½ºÅÏ½º Á¢±Ù¿ë ÇÁ·ÎÆÛÆ¼
+    // ì¸ìŠ¤í„´ìŠ¤ ì ‘ê·¼ìš© í”„ë¡œí¼í‹°
     public static T Instance
     {
         get { return m_Instance; }
     }
 
-    // ÃÊ±âÈ­¸¦ À§ÇØ Awake¿¡¼­ Init È£Ãâ
+    // ì´ˆê¸°í™”ë¥¼ ìœ„í•´ Awakeì—ì„œ Init í˜¸ì¶œ
     private void Awake()
     {
         Init();
     }
 
-    // ½Ì±ÛÅæ ÃÊ±âÈ­ ·ÎÁ÷
+    // ì‹±ê¸€í†¤ ì´ˆê¸°í™” ë¡œì§
     protected virtual void Init()
     {
-        if (m_Instance == null)
+        if(m_Instance == null)
         {
             m_Instance = (T)this;
 
-            // ¾À ÀüÈ¯ ½Ã À¯ÁöÇÒÁö °áÁ¤
-            if (!m_IsDestroyOnLoad)
+            // ì”¬ ì „í™˜ ì‹œ ìœ ì§€í• ì§€ ê²°ì •
+            if(!m_IsDestroyOnLoad)
             {
                 DontDestroyOnLoad(this);
             }
@@ -40,13 +40,13 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : SingletonBehaviour<
         }
     }
 
-    // ¿ÀºêÁ§Æ® ÆÄ±« ½Ã È£Ãâ
+    // ì˜¤ë¸Œì íŠ¸ íŒŒê´´ ì‹œ í˜¸ì¶œ
     protected virtual void OnDestroy()
     {
         Dispose();
     }
 
-    // Á¤¸® ÀÛ¾÷ ¼öÇà
+    // ì •ë¦¬ ì‘ì—… ìˆ˜í–‰
     protected virtual void Dispose()
     {
         m_Instance = null;
